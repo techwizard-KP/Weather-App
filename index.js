@@ -69,13 +69,14 @@ app.post("/weather", async (req, res) => {
       error: null,
       weather: weatherResponse.data,
       city: `${name}, ${country}`,
-      bgClass,
+      bgClass
     });
   } catch (err) {
     console.error("ERROR DETAILS:", err.response?.data || err.message);
     res.render("index.ejs", {
       weather: null,
       error: err.response?.data?.message || "Something went wrong",
+      bgClass: "default-bg"
     });
   }
 });

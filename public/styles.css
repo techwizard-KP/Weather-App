@@ -8,16 +8,17 @@
 
 /* Full-page background */
 body {
-  min-height: 100vh;
+  min-height: 100svh;           /* stable mobile viewport */
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 16px;
+  overflow: hidden;             /* crop excess image */
 
-  /* fallback */
   background-color: #66a6ff;
 }
+
 
 /* Weather background images */
 .default-bg,
@@ -27,22 +28,24 @@ body {
 .fog-bg,
 .mist-bg,
 .snow-bg {
-  background-size: cover;
-  background-position: center;
+  background-size: cover;        /* crop extra parts */
+  background-position: center;  /* crop evenly */
   background-repeat: no-repeat;
 }
 
+
 /* Main card */
 .weather-card {
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(12px);
-  padding: 28px 30px;
-  border-radius: 16px;
   width: 100%;
   max-width: 380px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  min-height: 320px;   /* prevents resize when data loads */
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 28px;
   text-align: center;
 }
+
 
 /* Heading */
 .weather-card h1 {
@@ -128,18 +131,22 @@ body {
   }
 
   .weather-card {
-    padding: 22px 18px;
-    border-radius: 14px;
+    max-width: 100%;
+    min-height: 300px;
   }
 
   .weather-card form {
     flex-direction: column;
+    gap: 12px;
   }
 
+  .weather-card input,
   .weather-card button {
     width: 100%;
+    font-size: 1rem;
   }
 }
+
 
 /* Background images */
 .default-bg {
